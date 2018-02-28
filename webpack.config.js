@@ -8,9 +8,10 @@ var webpack = require('webpack');
          filename: 'main.bundle.js'
      },
      module: {
-         loaders: [
+        rules: [
              {
                  test: /\.js$/,
+                 exclude: /node_modules/,
                  loader: 'babel-loader',
                  query: {
                      presets: ['es2015']
@@ -21,5 +22,6 @@ var webpack = require('webpack');
      stats: {
          colors: true
      },
-     devtool: 'source-map'
+     devtool: 'source-map',
+     mode: 'development'
  };
