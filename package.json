@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -p 9000",
+    "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
     "webpack": "webpack"
   },
   "repository": {
