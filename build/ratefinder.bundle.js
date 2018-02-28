@@ -71,6 +71,41 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./js/rate-service-mock.js":
+/*!*********************************!*\
+  !*** ./js/rate-service-mock.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var rates = [{
+    "name": "30 years fixed",
+    "rate": "13",
+    "years": "30"
+}, {
+    "name": "20 years fixed",
+    "rate": "2.8",
+    "years": "20"
+}];
+
+var findAll = exports.findAll = function findAll() {
+    return new Promise(function (resolve, reject) {
+        if (rates) {
+            resolve(rates);
+        } else {
+            reject("No rates");
+        }
+    });
+};
+
+/***/ }),
+
 /***/ "./js/ratefinder.js":
 /*!**************************!*\
   !*** ./js/ratefinder.js ***!
@@ -81,19 +116,29 @@
 "use strict";
 
 
-var url = "rates.json";
+var _rateServiceMock = __webpack_require__(/*! ./rate-service-mock */ "./js/rate-service-mock.js");
 
-fetch(url).then(function (response) {
-    return response.json();
-}).then(function (rates) {
+var service = _interopRequireWildcard(_rateServiceMock);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+service.findAll().then(function (rates) {
     var html = '';
     rates.forEach(function (rate) {
-        return html += "<tr><td>" + rate.name + "</td><td>" + rate.years + "</td><td>" + rate.rate + "%</td></tr>";
+        return html += '<tr><td>' + rate.name + '</td><td>' + rate.years + '</td><td>' + rate.rate + '%</td></tr>';
     });
     document.getElementById("rates").innerHTML = html;
 }).catch(function (e) {
     return console.log(e);
-});
+}); //let url = "rates.json";
+// fetch(url)
+//     .then(response => response.json())
+//     .then(rates => {
+//       let html = '';
+//       rates.forEach(rate => html += `<tr><td>${rate.name}</td><td>${rate.years}</td><td>${rate.rate}%</td></tr>`);
+//       document.getElementById("rates").innerHTML = html;
+//     })
+//     .catch(e => console.log(e));
 
 /***/ })
 
