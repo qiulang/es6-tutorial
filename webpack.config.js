@@ -24,8 +24,8 @@ var webpack = require('webpack');
      devtool: 'source-map',
      mode: 'development',
      devServer: {
-        contentBase: path.join(__dirname, 'build'),
+        contentBase: path.join(__dirname),
         compress: true,
         port: 9000
-      }
+     }
  };

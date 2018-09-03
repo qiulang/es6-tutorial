@@ -6,7 +6,7 @@
   "scripts": {
     "start": "http-server -p 9000",
     "debug": "webpack-dev-server --mode development --open",
-    "bundle": "webpack --mode development"
+    "bundle": "webpack --mode production"
   },
   "repository": {
     "type": "git",
