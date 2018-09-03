@@ -14,11 +14,7 @@ var webpack = require('webpack');
         rules: [
              {
                  test: /\.js$/,
-                 exclude: /node_modules/,
-                 loader: 'babel-loader',
-                 query: {
-                     presets: ['es2015']
-                 }
+                 loader: 'babel-loader'
              }
          ]
      },
@@ -26,5 +22,10 @@ var webpack = require('webpack');
          colors: true
      },
      devtool: 'source-map',
-     mode: 'development'
+     mode: 'development',
+     devServer: {
+        contentBase: path.join(__dirname, 'build'),
+        compress: true,
+        port: 9000
+      }
  };
