@@ -1,7 +1,10 @@
 import {calculateMonthlyPayment,calculateAmortization} from './mortgage';
+import debug from 'debug'
+let logger =  debug('es6')
 
 document.getElementById('calcBtn').addEventListener('click', () => {
     let principal = document.getElementById("principal").value;
+    logger(`principal is ${principal}`)
     let years = document.getElementById("years").value;
     let rate = document.getElementById("rate").value;
     let {monthlyPayment, monthlyRate, amortization} = calculateAmortization(principal, years, rate);
